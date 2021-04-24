@@ -2,7 +2,7 @@
 void gotoxy(int,int);
 void setcolor(int);
 void  exitFUNCTION(void);
-
+void  RawHTML(void);
 
 void intro()
 {
@@ -65,6 +65,7 @@ void intro()
         }else if (*USERchoice == '4')
 
         {  free(USERchoice);
+            RawHTML();
 
         }else if (*USERchoice == '5')
 
@@ -78,16 +79,7 @@ void intro()
 
         }
 
-
-
-
-
-
-
     }
 
-
-
-
-
 }
+

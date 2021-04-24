@@ -17,6 +17,7 @@ B.E 4th Sem, AUTH : Himanshu Kumar Sharma
 //user Define header files
 
 #include"intro.h"
+#include"web.h"
 
 //structure for the data and its size According to need we will use it
 struct heapMEM
