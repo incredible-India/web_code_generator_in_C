@@ -11,6 +11,8 @@ B.E 4th Sem, AUTH : Himanshu Kumar Sharma
 #include<stdio.h>
 #include<stdlib.h>
 #include<windows.h>
+#include<string.h>
+#include<conio.h>
 
 //user Define header files
 
@@ -23,6 +25,10 @@ struct heapMEM
     int sizeOfData;
 
 };
+
+//function declaration
+
+
 //global variables
 
 int i,j; //only for loop
@@ -75,4 +81,14 @@ void setcolor(int ForgC) //for changing the forGround color
           SetConsoleTextAttribute(hStdOut, wColor);
      }
      return;
+}
+
+void  exitFUNCTION()
+{
+
+    system("cls");
+    gotoxy(40,12);
+    printf("Thanx For Visiting Us");
+    getch();
+    exit(0);
 }
