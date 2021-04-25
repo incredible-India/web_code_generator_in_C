@@ -1,4 +1,4 @@
-//function declaration
+ //function declaration
 void gotoxy(int,int);
 void setcolor(int);
 void  exitFUNCTION(void);
@@ -46,11 +46,11 @@ struct webTitle WEBTilte()
 
 struct node* HeadAndParaContent(struct Node *head,int NumOFHeaings)
 {
-    extern int i;
-    struct Node *data = (struct Node*)malloc(sizeof(struct Node));
 
-    for(i=0;i<NumOFHeaings;i++)
-    {
+    struct Node *data = (struct Node*) malloc (sizeof(struct Node));
+    struct Node *extraNode = head;
+
+    extern int i;
         system("cls");
 
         setcolor(4);
@@ -61,12 +61,17 @@ struct node* HeadAndParaContent(struct Node *head,int NumOFHeaings)
          printf("Enter The Content of %d heading`s Paragraph..\n",i+1);
         fflush(stdin);
         gets(data->paraDATA);
+         //  struct Node *data = (struct Node*)malloc(sizeof(struct Node));
+    while(extraNode->next != NULL)
+    {
 
-        data->next = NULL;
-
+       extraNode = extraNode->next;
 
     }
-    return data;
+
+     extraNode->next =data;
+      data->next = NULL;
+    return head;
 
 }
 
@@ -75,9 +80,10 @@ struct node* HeadAndParaContent(struct Node *head,int NumOFHeaings)
 void  RawHTML()
 {
 struct webTitle Title;
-struct Node *head = (struct node*) malloc(sizeof(struct Node));;
-int NumOFHeaings;
+struct Node *head = (struct node*) malloc(sizeof(struct Node));
 
+int NumOFHeaings;
+extern int i;
 
 
   Title =  WEBTilte();
@@ -85,8 +91,21 @@ int NumOFHeaings;
   system("cls");
   printf("Enter Number of Headings..\t");
   scanf("%d",&NumOFHeaings);
- head = HeadAndParaContent(head,NumOFHeaings);
- printf("%s",head->headingDATA);
+
+  for( i=0 ;i<NumOFHeaings;i++)
+  {
+       head = HeadAndParaContent(head,NumOFHeaings);
+
+  }
+
+
+ while(head != NULL)
+ {
+     fflush(stdin);
+     printf("%s",head->headingDATA);
+     head=head->next;
+ }
+
 
 
 
