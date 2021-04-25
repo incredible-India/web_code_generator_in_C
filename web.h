@@ -2,7 +2,7 @@
 void gotoxy(int,int);
 void setcolor(int);
 void  exitFUNCTION(void);
-
+void RawHTML(void);
 struct webTitle {
 
    char *name ;
@@ -20,7 +20,9 @@ struct Node {
         struct Node * next;
 };
 
-
+//function declaration
+struct Node* HeadAndParaContent(struct Node *);
+int MakeHTMLPageRawOnly(struct Node *,char[]);
 
 struct webTitle WEBTilte()
 {
@@ -44,24 +46,25 @@ struct webTitle WEBTilte()
 
 }
 
-struct node* HeadAndParaContent(struct Node *head,int NumOFHeaings)
+struct Node * HeadAndParaContent(struct Node *head)
 {
 
     struct Node *data = (struct Node*) malloc (sizeof(struct Node));
     struct Node *extraNode = head;
 
-    extern int i;
+   extern int j;
+
         system("cls");
 
         setcolor(4);
-        printf("Enter The Content of %d Heading..\n",i+1);
+        printf("Enter The Content of %d Heading..\n",++j+1);
         fflush(stdin);
         gets(data->headingDATA);
            setcolor(6);
-         printf("Enter The Content of %d heading`s Paragraph..\n",i+1);
+         printf("Enter The Content of %d heading`s Paragraph..\n",j+1);
         fflush(stdin);
         gets(data->paraDATA);
-         //  struct Node *data = (struct Node*)malloc(sizeof(struct Node));
+
     while(extraNode->next != NULL)
     {
 
@@ -80,31 +83,74 @@ struct node* HeadAndParaContent(struct Node *head,int NumOFHeaings)
 void  RawHTML()
 {
 struct webTitle Title;
-struct Node *head = (struct node*) malloc(sizeof(struct Node));
+struct Node  *head = (struct node*) malloc(sizeof(struct Node));
 
-int NumOFHeaings;
+int NumOFHeaings,done;
 extern int i;
-
+int counter = 0;
 
   Title =  WEBTilte();
 
+  readAG2:
   system("cls");
   printf("Enter Number of Headings..\t");
   scanf("%d",&NumOFHeaings);
 
-  for( i=0 ;i<NumOFHeaings;i++)
+
+  if(NumOFHeaings <= 0 )
   {
-       head = HeadAndParaContent(head,NumOFHeaings);
+      system("cls");
+      gotoxy(40,12);
+      printf("Please enter the number greater than zero...");
+      getch();
+      goto readAG2;
+        }
+
+
+         system("cls");
+         setcolor(4);
+        printf("Enter The Content of %d Heading..\n",counter+1);
+        fflush(stdin);
+        gets(head->headingDATA);
+         setcolor(6);
+        printf("Enter The Content of %d heading`s Paragraph..\n",counter+1);
+         fflush(stdin);
+        gets(head->paraDATA);
+    head->next =NULL;
+      fflush(stdin);
+
+  for( i=0 ;i<NumOFHeaings-1;i++)
+  {
+       head = HeadAndParaContent(head);
 
   }
 
 
- while(head != NULL)
+/*while(head != NULL)
  {
      fflush(stdin);
-     printf("%s",head->headingDATA);
+   printf("%s",head->headingDATA);
      head=head->next;
- }
+
+}*/
+
+
+            system("cls");
+       done = MakeHTMLPageRawOnly(head,Title.name);
+
+       if(done)
+       {
+           system("cls");
+
+          printf("File has been created you can check in Raw_HTML folder");
+          getch();
+          intro();
+
+       }else
+       {
+        printf("An Error Occured");
+
+       }
 
 
 

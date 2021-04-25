@@ -13,12 +13,15 @@ B.E 4th Sem, AUTH : Himanshu Kumar Sharma
 #include<windows.h>
 #include<string.h>
 #include<conio.h>
-
+#include<sys/stat.h>
+#include<sys/types.h>
+#include<unistd.h>
+#include<string.h>
 //user Define header files
 
-#include"intro.h"
-#include"web.h"
-
+#include"./intro.h"
+#include"./web.h"
+#include"./fileHandling.h"
 //structure for the data and its size According to need we will use it
 struct heapMEM
 {
