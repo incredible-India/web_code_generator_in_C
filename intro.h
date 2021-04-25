@@ -3,6 +3,8 @@ void gotoxy(int,int);
 void setcolor(int);
 void  exitFUNCTION(void);
 void  RawHTML(void);
+void CodeWithBootstrap(void);
+
 
 void intro()
 {
@@ -36,12 +38,12 @@ void intro()
 
              gotoxy(15,16);
         setcolor(6);
-        printf(" 4 : Raw HTML only");
+        printf(" 3 : Raw HTML only");
 
 
              gotoxy(15,18);
         setcolor(4);
-        printf(" 5: EXIT");
+        printf(" 4: EXIT");
 
 
         //taking the user choice
@@ -53,6 +55,7 @@ void intro()
        if(*USERchoice == '1')
         {
             free(USERchoice);
+            CodeWithBootstrap();
 
         }else if (*USERchoice == '2')
         {
@@ -61,13 +64,9 @@ void intro()
         }else if (*USERchoice == '3')
 
         {  free(USERchoice);
-
-        }else if (*USERchoice == '4')
-
-        {  free(USERchoice);
             RawHTML();
 
-        }else if (*USERchoice == '5')
+        }else if (*USERchoice == '4')
 
         {
              free(USERchoice);
