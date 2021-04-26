@@ -54,22 +54,22 @@ void intro()
 
        if(*USERchoice == '1')
         {
-            free(USERchoice);
+          //  free(USERchoice);
             CodeWithBootstrap();
 
         }else if (*USERchoice == '2')
         {
-              free(USERchoice);
+           //   free(USERchoice);
 
         }else if (*USERchoice == '3')
 
-        {  free(USERchoice);
+        {  //free(USERchoice);
             RawHTML();
 
         }else if (*USERchoice == '4')
 
         {
-             free(USERchoice);
+            // free(USERchoice);
             exitFUNCTION();
 
         }else

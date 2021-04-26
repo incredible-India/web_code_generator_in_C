@@ -66,7 +66,7 @@ struct Node * HeadAndParaContent(struct Node *head)
 
         system("cls");
 
-        setcolor(4);
+        setcolor(3);
         printf("Enter The Content of %d Heading..\n",++j+1);
         fflush(stdin);
         gets(data->headingDATA);
@@ -175,46 +175,49 @@ int counter = 0;
 
 //code for bootstrap
 
-struct Boot {
-  //used in code with bootstrap
-  char heading[100];
-  char paragraph[500];
-
-  struct Boot * next;
-
-
-
+struct boots
+{
+    char heading[100];
+    char parag[500];
+    struct boots * next;
 };
 
+
 //function declaration
-struct Boot* HeadAndParaContentBTS(struct Boot *);
-int PrintHTMLBootstrp(struct Boot *);
+struct boots* HeadAndParaContentFrBTS(struct boots *);
+void  printBTSCode(struct boots*,char []);
 
-void CodeWithBootstrap()
+void  CodeWithBootstrap()
 {
-    struct Boot *B_Head = (struct Boot *) malloc (sizeof(struct Boot *));
-
     struct webTitle titleWEB;
 
-    int counter=0;
+    struct boots *node =  (struct boots*) malloc(sizeof(struct boots*));
 
-    extern int i;
+    int numberOFheading ;
 
-    int NumOFHeaings;
+    int counter =0;
 
-    system("cls");
+    titleWEB = WEBTilte();
 
-        titleWEB = WEBTilte();
 
+    //printf("%s",titleWEB.name);
 
     readAG3:
-     system("cls");
-  printf("Enter Number of Headings..\t");
-  scanf("%d",&NumOFHeaings);
+    system("cls");
+
+    gotoxy(40,12);
+
+    setcolor(7);
+
+    printf("Enter the number of headings...\t");
+
+    setcolor(8);
+
+    scanf("%d",&numberOFheading);
 
 
-  if(NumOFHeaings <= 0 )
-  {
+     if(numberOFheading <= 0 )
+       {
       system("cls");
       gotoxy(40,12);
       printf("Please enter the number greater than zero...");
@@ -223,69 +226,100 @@ void CodeWithBootstrap()
         }
 
 
-         system("cls");
-         setcolor(4);
-        printf("Enter The Content of %d Heading..\n",counter+1);
+        system("cls");
+
+        setcolor(6);
+
+        printf("Enter the %d`heading content..\n",++counter);
+
+
         fflush(stdin);
-        gets(B_Head->heading);
-         setcolor(6);
-        printf("Enter The Content of %d heading`s Paragraph..\n",counter+1);
-         fflush(stdin);
-        gets(B_Head->paragraph);
-    B_Head->next =NULL;
-      fflush(stdin);
+        setcolor(3);
 
-  for( i=0 ;i<NumOFHeaings-1;i++)
-  {
-       B_Head = HeadAndParaContent(B_Head);
+        gets(node->heading);
 
-  }
 
-  while(B_Head->next != NULL)
-  {
-      printf("%s\n%s\n",B_Head->heading,B_Head->paragraph);
-      fflush(stdin);
-      B_Head = B_Head->next;
-  }
-  getch();
+
+
+
+        setcolor(4);
+
+        printf("Enter the %d`heading`s paragraph content..\n",counter);
+
+        fflush(stdin);
+
+        setcolor(7);
+
+        gets(node->parag);
+
+
+        node->next =NULL;
+
+        for(int i = 0 ; i < (numberOFheading-1); i++)
+        {
+            node = HeadAndParaContentFrBTS(node);
+        }
+
+
+
+        printBTSCode(node,titleWEB.name);
+
+
+
+
+
+
+
 }
 
 
+struct boots * HeadAndParaContentFrBTS(struct boots* node)
 
-struct Boot* HeadAndParaContentBTS(struct Boot *head)
 {
-    struct Boot *NewNode =  (struct Boot *) malloc(sizeof(struct Boot *));
 
-    struct Boot *preData = head;
+ struct boots *newNode = (struct boots *) malloc(sizeof(struct boots));
+
+ struct boots *PreviousNode = node;
+
+ extern int j;
+
+ system("cls");
+
+ setcolor(3);
+
+ printf("Enter The %d`Heading `s content \n",++j+1);
+
+ fflush(stdin);
+
+ setcolor(7);
+
+ gets(newNode->heading);
 
 
-     extern int j;
 
-        system("cls");
+ setcolor(6);
 
-        setcolor(7);
-        printf("Enter The Content of %d Heading..\n",++j+1);
-        fflush(stdin);
-        gets(NewNode->heading);
-           setcolor(6);
-         printf("Enter The Content of %d heading`s Paragraph..\n",j+1);
-        fflush(stdin);
-        gets(NewNode->paragraph);
+ printf("\nEnter The %d`Heading paragraph `s content \n",j+1);
 
-    while(preData->next != NULL)
+ fflush(stdin);
+
+ setcolor(2);
+
+ gets(newNode->parag);
+
+
+   while(PreviousNode->next != NULL)
     {
 
-       preData = preData->next;
+       PreviousNode = PreviousNode->next;
 
     }
 
-     preData->next =NewNode;
-      NewNode->next = NULL;
+     PreviousNode->next =newNode;
 
+     newNode->next = NULL;
 
-
-    return head;
-
+    return node;
 
 
 }
