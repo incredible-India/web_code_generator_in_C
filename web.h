@@ -179,8 +179,8 @@ struct Boot {
   //used in code with bootstrap
   char heading[100];
   char paragraph[500];
-  char webPageTitle[30];
-  struct Boot *next;
+
+  struct Boot * next;
 
 
 
@@ -194,45 +194,36 @@ void CodeWithBootstrap()
 {
     struct Boot *B_Head = (struct Boot *) malloc (sizeof(struct Boot *));
 
+    struct webTitle titleWEB;
+
     int counter=0;
 
     extern int i;
 
-    int *numberOfHeading  = (int *) malloc (1*sizeof(int));
-        //free it after use
+    int NumOFHeaings;
+
     system("cls");
 
-    gotoxy(40,12);
-    setcolor(2);
-    printf("Enter the Web page Title....");
-    gotoxy(40,14);
-    setcolor(3);
-    fflush(stdin);
-    gets(B_Head->webPageTitle);
+        titleWEB = WEBTilte();
 
 
     readAG3:
-    system("cls");
-    gotoxy(40,12);
-    setcolor(4);
-    printf("Enter the number of headings...\t");
-    setcolor(6);
-    scanf("%d",&*numberOfHeading);
+     system("cls");
+  printf("Enter Number of Headings..\t");
+  scanf("%d",&NumOFHeaings);
 
 
-    if(numberOfHeading <= 0)
-    {
-
+  if(NumOFHeaings <= 0 )
+  {
       system("cls");
       gotoxy(40,12);
-      printf("Entered  number should be greater than zero...");
+      printf("Please enter the number greater than zero...");
       getch();
       goto readAG3;
+        }
 
-    }
 
-
-          system("cls");
+         system("cls");
          setcolor(4);
         printf("Enter The Content of %d Heading..\n",counter+1);
         fflush(stdin);
@@ -241,37 +232,22 @@ void CodeWithBootstrap()
         printf("Enter The Content of %d heading`s Paragraph..\n",counter+1);
          fflush(stdin);
         gets(B_Head->paragraph);
-        B_Head->next =NULL;
-        fflush(stdin);
+    B_Head->next =NULL;
+      fflush(stdin);
 
-
-      for( i=0 ;i<*numberOfHeading-1;i++)
+  for( i=0 ;i<NumOFHeaings-1;i++)
   {
-       B_Head = HeadAndParaContentBTS(B_Head);
+       B_Head = HeadAndParaContent(B_Head);
 
   }
 
-  free(numberOfHeading);
-  int dones =PrintHTMLBootstrp(B_Head);
-    if(dones == 1)
-    {
-           gotoxy(40,12);
-        system("cls");
-        printf("File Created Successfully ,kindly check in HTML_BTS folder");
-            getch();
-         system("cls");
-         intro();
-
-    }else
-    {
-        gotoxy(40,12);
-        system("cls");
-        printf("An Error Occured..Try Again");
-        getch();
-         system("cls");
-         intro();
-    }
-
+  while(B_Head->next != NULL)
+  {
+      printf("%s\n%s\n",B_Head->heading,B_Head->paragraph);
+      fflush(stdin);
+      B_Head = B_Head->next;
+  }
+  getch();
 }
 
 
@@ -305,6 +281,8 @@ struct Boot* HeadAndParaContentBTS(struct Boot *head)
 
      preData->next =NewNode;
       NewNode->next = NULL;
+
+
 
     return head;
 
