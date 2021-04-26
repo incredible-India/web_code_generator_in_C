@@ -94,9 +94,11 @@ void  printBTSCode(struct boots *node,char webTitles[])
 
      gotoxy(40,12);
 
-     setcolor(2);
+     setcolor(4);
 
      printf("File Has been Created ,Check in \'BTS_HTML\' Folder");
+          system("cls");
+
      getch();
 
      return;

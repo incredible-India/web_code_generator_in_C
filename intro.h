@@ -33,13 +33,13 @@ void intro()
 
 
 
-          gotoxy(15,16);
+          gotoxy(15,14);
         setcolor(1);
         printf(" 2 : Web page with \'Bootstrap\'");
 
 
 
-             gotoxy(15,18);
+             gotoxy(15,16);
         setcolor(4);
         printf(" 3: EXIT");
 
