@@ -25,25 +25,23 @@ void intro()
 
 
 
-        gotoxy(15,12);
-        setcolor(1);
-        printf(" 1 : Web page with \'Bootstrap\'");
-
-                gotoxy(15,14);
-        setcolor(3);
-        printf(" 2 : Web page with \' External CSS\'");
-
-
-
-
-             gotoxy(15,16);
+          gotoxy(15,12);
         setcolor(6);
-        printf(" 3 : Raw HTML only");
+        printf(" 1 : Raw HTML only");
+
+
+
+
+
+          gotoxy(15,16);
+        setcolor(1);
+        printf(" 2 : Web page with \'Bootstrap\'");
+
 
 
              gotoxy(15,18);
         setcolor(4);
-        printf(" 4: EXIT");
+        printf(" 3: EXIT");
 
 
         //taking the user choice
@@ -52,21 +50,17 @@ void intro()
         *USERchoice = getch();
 
 
-       if(*USERchoice == '1')
+       if(*USERchoice == '2')
         {
           //  free(USERchoice);
             CodeWithBootstrap();
 
-        }else if (*USERchoice == '2')
-        {
-           //   free(USERchoice);
-
-        }else if (*USERchoice == '3')
+        }else if (*USERchoice == '1')
 
         {  //free(USERchoice);
             RawHTML();
 
-        }else if (*USERchoice == '4')
+        }else if (*USERchoice == '3')
 
         {
             // free(USERchoice);
